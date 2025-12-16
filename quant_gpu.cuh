@@ -19,8 +19,12 @@ extern "C" {
         }                                                                     \
     } while (0)
 
-void quantize_matrix_gpu(const FP32Matrix* src, INT8Matrix* dest, const float* scales);
-void dequantize_matrix_gpu(const INT8Matrix* src, FP32Matrix* dest, const float* scales); 
+
+#define TILE_DIM 16
+#define COARSEN 4
+
+void quantize_matrix_gpu(const FP32Matrix* src, INT8Matrix* dest, const float* scales, int kernel_version, float* kernel_ms);
+void dequantize_matrix_gpu(const INT8Matrix* src, FP32Matrix* dest, const float* scales, int kernel_version, float* kernel_ms); 
 
 #ifdef __cplusplus
 }

@@ -50,7 +50,7 @@ float attention_dot_product_error(const float* Q, const FP32Matrix* K, const FP3
 //in context of previous tokens)
 
 //key is like a hash for the token
-//so for how are you doing?
+//so for: how are you doing?
 //and we are at doing, then how and are -> hashed to keys and their values in the kv matrix
 //although this isnt fully accurate each key is a learned vecotr.
 
