@@ -1,4 +1,4 @@
-# GPU-Accelerated KV Cache Quantization (CUDA)
+# GPU-Accelerated KV Cache Quantization
 
 This project implements **INT8 KV-cache quantization** for transformer inference and benchmarks multiple CUDA kernel variants against a CPU baseline.
 
@@ -22,7 +22,7 @@ This mirrors common inference-engine practice: keep KV compressed in memory, and
 * **`compute_scales()`**: OpenMP-parallel over columns (each thread scans one column) 
 * **`quantize_matrix()` / `dequantize_matrix()`**: serial reference loops (conservative baseline)
 
-### GPU implementation (4 kernel variants)
+### GPU implementation
 
 All GPU kernels treat quantization/dequantization as an **embarrassingly parallel, memory-bound** workload (one thread ≈ one element, or a small bundle of elements).
 
@@ -82,7 +82,7 @@ nvcc -O3 -Xcompiler -fopenmp main.cu quant_gpu.cu quant_cpu.c matrix.c -o kv_qua
 
 ---
 
-## Results (your run)
+## Results
 
 ### Key takeaway
 
