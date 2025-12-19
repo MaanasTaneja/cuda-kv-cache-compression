@@ -108,6 +108,28 @@ nvcc -O3 -Xcompiler -fopenmp tests.cu quant_gpu.cu quant_cpu.c matrix.c -o unit_
 
 ---
 
+## Unit Tests Details (25 Correctness Tests)
+
+To ensure robustness and compliance with correctness requirements, `tests.cu` implements **25 distinct unit tests**. These cover basic allocation, core logic, GPU kernel correctness, edge cases, pattern checks, and stress testing.
+
+| Category | Count | Tests | Rationale/Description |
+| :--- | :---: | :--- | :--- |
+| **Basic Allocations** | 2 | `test_create_fp32`<br>`test_create_int8` | Verify that FP32 and INT8 matrix structs can be allocated, initialized with correct dimensions, and freed without errors. |
+| **Data Helpers** | 2 | `test_fill_range`<br>`test_query_fill` | Ensure random number generators (matrix & vector) produce values strictly within specified min/max bounds. |
+| **Metric Identity** | 3 | `test_l2_identical`<br>`test_max_abs_identical`<br>`test_attn_identical` | **Sanity check**: The error between a matrix and itself must be 0 (or $< 10^{-6}$). Validates the error-checking code itself. |
+| **CPU Core Logic** | 3 | `test_compute_scales_simple`<br>`test_cpu_quant_values`<br>`test_cpu_dequant_values` | **White-box testing** of the reference CPU implementation. Checks if specific known inputs (e.g., 63.5) produce expected quantized integers (e.g., 64) and scales. |
+| **GPU Correctness** | 4 | `test_gpu_naive`<br>`test_gpu_tiled`<br>`test_gpu_coarsened`<br>`test_gpu_vectorized` | **Cross-implementation checks**: Runs each GPU kernel variant on random data and verifies the output matches the CPU reference implementation within integer-rounding tolerance. |
+| **Edge Cases** | 3 | `test_1x1_cpu`<br>`test_1x1_gpu_naive`<br>`test_1x4_gpu_vec` | **Boundary testing**: Ensures the code handles minimal matrix sizes ($1 \times 1$) without segfaulting or producing NaNs. |
+| **Patterns** | 3 | `test_all_zeros`<br>`test_all_ones`<br>`test_alternating` | **Deterministic patterns**: Checks behavior on structured data (all 0s, max 127s, alternating $\pm 127$) to catch logic errors that random data might miss. |
+| **Consistency** | 3 | `test_consistency_naive_tiled`<br>`test_consistency_naive_coarsened`<br>`test_consistency_naive_vectorized` | **Kernel-to-kernel validation**: Ensures that optimized kernels (Shared Mem, Coarsened, Vectorized) produce bit-exact (or near-exact) outputs compared to the simple Naive kernel. |
+| **Stress Tests** | 2 | `test_stress_cpu_large`<br>`test_stress_gpu_large` | **Scalability check**: Runs on larger matrices ($2048 \times 128$ and $4096 \times 256$) to ensure no heap corruption or scaling artifacts occur. |
+
+**Total Tests: 25**
+
+Executing `./unit_tests` runs all of the above and reports a `PASS/FAIL` status for each.
+
+---
+
 ## Results
 
 ### Key takeaway
