@@ -76,8 +76,34 @@ nvcc -O3 -Xcompiler -fopenmp main.cu quant_gpu.cu quant_cpu.c matrix.c -o kv_qua
 
 ### Run
 
+### Run Benchmarks (Stress Tests)
+The compiled binary `kv_quant_bench` will automatically run all stress test cases mentioned in the paper, covering a wide range of workloads from small synthetic tests to realistic large-context LLM scenarios. No additional arguments or configuration are required.
+
 ```bash
 ./kv_quant_bench
+```
+
+## Benchmark Inputs (Matrix Sizes)
+
+The benchmark evaluates performance across various KV-cache dimensions ($T \times D$), representing different stages of inference and model sizes.
+
+| Test Case | Dimensions ($T \times D$) | Description |
+| :--- | :--- | :--- |
+| **Trivial Correctness** | $1,024 \times 64$ | Minimal case for basic validation. |
+| **Small** | $2,048 \times 128$ | Baseline synthetic workload. |
+| **Medium** | $16,384 \times 256$ | Intermediate synthetic workload. |
+| **Large** | $65,536 \times 256$ | Large context synthetic workload. |
+| **Very Large** | $131,072 \times 256$ | Extended context synthetic workload. |
+| **Realistic Small LLM** | $131,072 \times 1,024$ | Realistic hidden dimension for small models. |
+| **Realistic Medium LLM** | $131,072 \times 2,048$ | Realistic hidden dimension for medium models. |
+| **Realistic Large LLM** | $131,072 \times 4,096$ | Realistic hidden dimension for large models (e.g., Llama 2 70B). |
+| **Realistic V. Large LLM** | $131,072 \times 8,192$ | Estimate for very large models (e.g., Claude, GPT-4 class). |
+| **Massive Attention** | $262,144 \times 128$ | Testing extreme sequence length handling. |
+
+### Run Unit Tests (Correctness)
+```bash
+nvcc -O3 -Xcompiler -fopenmp tests.cu quant_gpu.cu quant_cpu.c matrix.c -o unit_tests
+./unit_tests
 ```
 
 ---

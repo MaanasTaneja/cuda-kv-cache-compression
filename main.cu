@@ -23,6 +23,7 @@ typedef struct {
 int main(int argc, char** argv) {
 
     TestCase tests[] = {
+        {"Trivial Correctness Test", 1024, 64},
         {"Small",                  2048,    128},
         {"Medium",                16384,    256},
         {"Large",                 65536,    256},
@@ -30,7 +31,8 @@ int main(int argc, char** argv) {
         {"Realistic Small LLM workload",131072,   1024},
         {"Realistic Medium LLM workload",131072,   2048},
         {"Realistic Large LLM workload",131072,   4096},
-        {"Realistic V. Large LLM workload",131072,  8192} //this is an estimate to claude's kv cache matrix size.
+        {"Realistic V. Large LLM workload",131072,  8192}, //this is an estimate to claude's kv cache matrix size.
+        {"Massive Attention", 262144, 128} //long context window
     };
     const int num_tests = (int)(sizeof(tests) / sizeof(TestCase));
 

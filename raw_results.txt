@@ -1,0 +1,488 @@
+
+STRESS TESTS
+
+=============================================
+Test 1: Trivial Correctness Test
+KV matrix: T = 1024, D = 64
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 0.000645 s
+CPU dequant time       : 0.000401 s
+CPU quant+dequant time : 0.001046 s
+GPU (Naive) quant time             : 0.000013 s
+GPU (Naive) dequant time           : 0.000011 s
+GPU (Naive) quant+dequant time     : 0.000024 s
+GPU (Tiled) quant time             : 0.000011 s
+GPU (Tiled) dequant time           : 0.000011 s
+GPU (Tiled) quant+dequant time     : 0.000022 s
+GPU (Coarsened) quant time         : 0.000011 s
+GPU (Coarsened) dequant time       : 0.000011 s
+GPU (Coarsened) quant+dequant time : 0.000022 s
+GPU (Vectorized) quant time         : 0.000011 s
+GPU (Vectorized) dequant time       : 0.000010 s
+GPU (Vectorized) quant+dequant time : 0.000020 s
+Speedup (Naive)      : 43.06x
+Speedup (Tiled)      : 46.76x
+Speedup (Coarsened)  : 47.64x
+Speedup (Vectorized) : 51.31x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 0.581541
+GPU (Naive) L2 error         : 0.581541
+GPU (Tiled) L2 error         : 0.581541
+GPU (Coarsened) L2 error     : 0.581541
+GPU (Vectorized) L2 error    : 0.581541
+CPU Max abs error            : 0.003936
+GPU (Naive) Max abs error    : 0.003936
+GPU (Tiled) Max abs error    : 0.003936
+GPU (Coarsened) Max abs error: 0.003936
+GPU (Vectorized) Max abs error: 0.003936
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.008454
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.008454
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.008454
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.008454
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.008454
+
+=============================================
+Test 2: Small
+KV matrix: T = 2048, D = 128
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 0.002728 s
+CPU dequant time       : 0.001734 s
+CPU quant+dequant time : 0.004463 s
+GPU (Naive) quant time             : 0.000016 s
+GPU (Naive) dequant time           : 0.000014 s
+GPU (Naive) quant+dequant time     : 0.000030 s
+GPU (Tiled) quant time             : 0.000016 s
+GPU (Tiled) dequant time           : 0.000016 s
+GPU (Tiled) quant+dequant time     : 0.000032 s
+GPU (Coarsened) quant time         : 0.000013 s
+GPU (Coarsened) dequant time       : 0.000013 s
+GPU (Coarsened) quant+dequant time : 0.000026 s
+GPU (Vectorized) quant time         : 0.000013 s
+GPU (Vectorized) dequant time       : 0.000012 s
+GPU (Vectorized) quant+dequant time : 0.000025 s
+Speedup (Naive)      : 148.68x
+Speedup (Tiled)      : 137.94x
+Speedup (Coarsened)  : 169.66x
+Speedup (Vectorized) : 178.34x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 1.163537
+GPU (Naive) L2 error         : 1.163537
+GPU (Tiled) L2 error         : 1.163537
+GPU (Coarsened) L2 error     : 1.163537
+GPU (Vectorized) L2 error    : 1.163537
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.012125
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.012125
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.012125
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.012125
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.012125
+
+=============================================
+Test 3: Medium
+KV matrix: T = 16384, D = 256
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 0.074549 s
+CPU dequant time       : 0.044346 s
+CPU quant+dequant time : 0.118896 s
+GPU (Naive) quant time             : 0.000137 s
+GPU (Naive) dequant time           : 0.000135 s
+GPU (Naive) quant+dequant time     : 0.000271 s
+GPU (Tiled) quant time             : 0.000147 s
+GPU (Tiled) dequant time           : 0.000153 s
+GPU (Tiled) quant+dequant time     : 0.000300 s
+GPU (Coarsened) quant time         : 0.000132 s
+GPU (Coarsened) dequant time       : 0.000102 s
+GPU (Coarsened) quant+dequant time : 0.000234 s
+GPU (Vectorized) quant time         : 0.000087 s
+GPU (Vectorized) dequant time       : 0.000101 s
+GPU (Vectorized) quant+dequant time : 0.000187 s
+Speedup (Naive)      : 438.36x
+Speedup (Tiled)      : 396.55x
+Speedup (Coarsened)  : 509.09x
+Speedup (Vectorized) : 634.30x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 4.647066
+GPU (Naive) L2 error         : 4.647066
+GPU (Tiled) L2 error         : 4.647066
+GPU (Coarsened) L2 error     : 4.647066
+GPU (Vectorized) L2 error    : 4.647066
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.016573
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.016572
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.016572
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.016572
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.016572
+
+=============================================
+Test 4: Large
+KV matrix: T = 65536, D = 256
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 0.583134 s
+CPU dequant time       : 0.271657 s
+CPU quant+dequant time : 0.854791 s
+GPU (Naive) quant time             : 0.000642 s
+GPU (Naive) dequant time           : 0.000616 s
+GPU (Naive) quant+dequant time     : 0.001258 s
+GPU (Tiled) quant time             : 0.000737 s
+GPU (Tiled) dequant time           : 0.000738 s
+GPU (Tiled) quant+dequant time     : 0.001475 s
+GPU (Coarsened) quant time         : 0.000536 s
+GPU (Coarsened) dequant time       : 0.000399 s
+GPU (Coarsened) quant+dequant time : 0.000935 s
+GPU (Vectorized) quant time         : 0.000324 s
+GPU (Vectorized) dequant time       : 0.000401 s
+GPU (Vectorized) quant+dequant time : 0.000725 s
+Speedup (Naive)      : 679.58x
+Speedup (Tiled)      : 579.56x
+Speedup (Coarsened)  : 914.07x
+Speedup (Vectorized) : 1179.31x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 9.212494
+GPU (Naive) L2 error         : 9.212494
+GPU (Tiled) L2 error         : 9.212494
+GPU (Coarsened) L2 error     : 9.212494
+GPU (Vectorized) L2 error    : 9.212494
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.016900
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.016900
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.016900
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.016900
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.016900
+
+=============================================
+Test 5: Very Large
+KV matrix: T = 131072, D = 256
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 1.102841 s
+CPU dequant time       : 0.608111 s
+CPU quant+dequant time : 1.710952 s
+GPU (Naive) quant time             : 0.001267 s
+GPU (Naive) dequant time           : 0.001221 s
+GPU (Naive) quant+dequant time     : 0.002488 s
+GPU (Tiled) quant time             : 0.001015 s
+GPU (Tiled) dequant time           : 0.000901 s
+GPU (Tiled) quant+dequant time     : 0.001915 s
+GPU (Coarsened) quant time         : 0.000932 s
+GPU (Coarsened) dequant time       : 0.000823 s
+GPU (Coarsened) quant+dequant time : 0.001755 s
+GPU (Vectorized) quant time         : 0.000643 s
+GPU (Vectorized) dequant time       : 0.000816 s
+GPU (Vectorized) quant+dequant time : 0.001459 s
+Speedup (Naive)      : 687.60x
+Speedup (Tiled)      : 893.32x
+Speedup (Coarsened)  : 975.18x
+Speedup (Vectorized) : 1172.40x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 12.823374
+GPU (Naive) L2 error         : 12.823374
+GPU (Tiled) L2 error         : 12.823374
+GPU (Coarsened) L2 error     : 12.823374
+GPU (Vectorized) L2 error    : 12.823374
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.017052
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.017053
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.017053
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.017053
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.017053
+
+=============================================
+Test 6: Realistic Small LLM workload
+KV matrix: T = 131072, D = 1024
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 5.473844 s
+CPU dequant time       : 3.138949 s
+CPU quant+dequant time : 8.612793 s
+GPU (Naive) quant time             : 0.004247 s
+GPU (Naive) dequant time           : 0.003737 s
+GPU (Naive) quant+dequant time     : 0.007983 s
+GPU (Tiled) quant time             : 0.003671 s
+GPU (Tiled) dequant time           : 0.003254 s
+GPU (Tiled) quant+dequant time     : 0.006925 s
+GPU (Coarsened) quant time         : 0.003731 s
+GPU (Coarsened) dequant time       : 0.003260 s
+GPU (Coarsened) quant+dequant time : 0.006991 s
+GPU (Vectorized) quant time         : 0.002536 s
+GPU (Vectorized) dequant time       : 0.003228 s
+GPU (Vectorized) quant+dequant time : 0.005764 s
+Speedup (Naive)      : 1078.84x
+Speedup (Tiled)      : 1243.71x
+Speedup (Coarsened)  : 1231.96x
+Speedup (Vectorized) : 1494.17x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 16.589102
+GPU (Naive) L2 error         : 16.589102
+GPU (Tiled) L2 error         : 16.589102
+GPU (Coarsened) L2 error     : 16.589102
+GPU (Vectorized) L2 error    : 16.589102
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.033607
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.033606
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.033606
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.033606
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.033606
+
+=============================================
+Test 7: Realistic Medium LLM workload
+KV matrix: T = 131072, D = 2048
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 15.597369 s
+CPU dequant time       : 6.975830 s
+CPU quant+dequant time : 22.573199 s
+GPU (Naive) quant time             : 0.007172 s
+GPU (Naive) dequant time           : 0.006034 s
+GPU (Naive) quant+dequant time     : 0.013206 s
+GPU (Tiled) quant time             : 0.007493 s
+GPU (Tiled) dequant time           : 0.006475 s
+GPU (Tiled) quant+dequant time     : 0.013968 s
+GPU (Coarsened) quant time         : 0.007533 s
+GPU (Coarsened) dequant time       : 0.006413 s
+GPU (Coarsened) quant+dequant time : 0.013946 s
+GPU (Vectorized) quant time         : 0.005074 s
+GPU (Vectorized) dequant time       : 0.006479 s
+GPU (Vectorized) quant+dequant time : 0.011552 s
+Speedup (Naive)      : 1709.31x
+Speedup (Tiled)      : 1616.08x
+Speedup (Coarsened)  : 1618.66x
+Speedup (Vectorized) : 1954.00x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 17.524998
+GPU (Naive) L2 error         : 17.524998
+GPU (Tiled) L2 error         : 17.524998
+GPU (Coarsened) L2 error     : 17.524998
+GPU (Vectorized) L2 error    : 17.524998
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.047905
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.047904
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.047904
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.047904
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.047904
+
+=============================================
+Test 8: Realistic Large LLM workload
+KV matrix: T = 131072, D = 4096
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 34.414514 s
+CPU dequant time       : 14.503994 s
+CPU quant+dequant time : 48.918508 s
+GPU (Naive) quant time             : 0.014618 s
+GPU (Naive) dequant time           : 0.012355 s
+GPU (Naive) quant+dequant time     : 0.026973 s
+GPU (Tiled) quant time             : 0.016279 s
+GPU (Tiled) dequant time           : 0.013804 s
+GPU (Tiled) quant+dequant time     : 0.030083 s
+GPU (Coarsened) quant time         : 0.015194 s
+GPU (Coarsened) dequant time       : 0.012650 s
+GPU (Coarsened) quant+dequant time : 0.027844 s
+GPU (Vectorized) quant time         : 0.010171 s
+GPU (Vectorized) dequant time       : 0.012990 s
+GPU (Vectorized) quant+dequant time : 0.023161 s
+Speedup (Naive)      : 1813.60x
+Speedup (Tiled)      : 1626.09x
+Speedup (Coarsened)  : 1756.89x
+Speedup (Vectorized) : 2112.15x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 19.264637
+GPU (Naive) L2 error         : 19.264637
+GPU (Tiled) L2 error         : 19.264637
+GPU (Coarsened) L2 error     : 19.264637
+GPU (Vectorized) L2 error    : 19.264637
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.066897
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.066895
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.066895
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.066895
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.066895
+
+=============================================
+Test 9: Realistic V. Large LLM workload
+KV matrix: T = 131072, D = 8192
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 53.581729 s
+CPU dequant time       : 30.533437 s
+CPU quant+dequant time : 84.115166 s
+GPU (Naive) quant time             : 0.027472 s
+GPU (Naive) dequant time           : 0.023909 s
+GPU (Naive) quant+dequant time     : 0.051381 s
+GPU (Tiled) quant time             : 0.030187 s
+GPU (Tiled) dequant time           : 0.027902 s
+GPU (Tiled) quant+dequant time     : 0.058089 s
+GPU (Coarsened) quant time         : 0.030951 s
+GPU (Coarsened) dequant time       : 0.026471 s
+GPU (Coarsened) quant+dequant time : 0.057422 s
+GPU (Vectorized) quant time         : 0.020848 s
+GPU (Vectorized) dequant time       : 0.026058 s
+GPU (Vectorized) quant+dequant time : 0.046905 s
+Speedup (Naive)      : 1637.09x
+Speedup (Tiled)      : 1448.04x
+Speedup (Coarsened)  : 1464.85x
+Speedup (Vectorized) : 1793.30x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 22.334902
+GPU (Naive) L2 error         : 22.334902
+GPU (Tiled) L2 error         : 22.334902
+GPU (Coarsened) L2 error     : 22.334902
+GPU (Vectorized) L2 error    : 22.334902
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.094911
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.094909
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.094909
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.094909
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.094909
+
+=============================================
+Test 10: Massive Attention
+KV matrix: T = 262144, D = 128
+=============================================
+
+===== PERFORMANCE =====
+CPU quant time         : 1.088697 s
+CPU dequant time       : 0.706569 s
+CPU quant+dequant time : 1.795266 s
+GPU (Naive) quant time             : 0.001254 s
+GPU (Naive) dequant time           : 0.001219 s
+GPU (Naive) quant+dequant time     : 0.002472 s
+GPU (Tiled) quant time             : 0.001162 s
+GPU (Tiled) dequant time           : 0.001231 s
+GPU (Tiled) quant+dequant time     : 0.002394 s
+GPU (Coarsened) quant time         : 0.000925 s
+GPU (Coarsened) dequant time       : 0.000818 s
+GPU (Coarsened) quant+dequant time : 0.001743 s
+GPU (Vectorized) quant time         : 0.000640 s
+GPU (Vectorized) dequant time       : 0.000798 s
+GPU (Vectorized) quant+dequant time : 0.001438 s
+Speedup (Naive)      : 726.21x
+Speedup (Tiled)      : 750.01x
+Speedup (Coarsened)  : 1029.73x
+Speedup (Vectorized) : 1248.78x
+
+===== RECONSTRUCTION ERROR =====
+CPU L2 error                 : 12.824567
+GPU (Naive) L2 error         : 12.824567
+GPU (Tiled) L2 error         : 12.824567
+GPU (Coarsened) L2 error     : 12.824567
+GPU (Vectorized) L2 error    : 12.824567
+CPU Max abs error            : 0.003937
+GPU (Naive) Max abs error    : 0.003937
+GPU (Tiled) Max abs error    : 0.003937
+GPU (Coarsened) Max abs error: 0.003937
+GPU (Vectorized) Max abs error: 0.003937
+
+===== ATTENTION SURROGATE ERROR =====
+CPU Mean |Q·K - Q·K̂|               : 0.011693
+GPU (Naive) Mean |Q·K - Q·K̂|       : 0.011693
+GPU (Tiled) Mean |Q·K - Q·K̂|       : 0.011693
+GPU (Coarsened) Mean |Q·K - Q·K̂|   : 0.011693
+GPU (Vectorized) Mean |Q·K - Q·K̂|  : 0.011693
+
+
+
+UNIT TEST RESULTS
+
+Running 25 Unit Tests...
+------------------------
+Test  1: Matrix Creation (FP32)                             ... PASS
+Test  2: Matrix Creation (INT8)                             ... PASS
+Test  3: Matrix Fill (Range Check)                          ... PASS
+Test  4: Query Vector Fill (Range Check)                    ... PASS
+Test  5: L2 Error Identity                                  ... PASS
+Test  6: Max Abs Error Identity                             ... PASS
+Test  7: Attention Error Identity                           ... PASS
+Test  8: Compute Scales (Simple)                            ... PASS
+Test  9: CPU Quantize Values                                ... PASS
+Test 10: CPU Dequantize Values                              ... PASS
+Test 11: GPU Naive Kernel (vs CPU match)                    ... PASS
+Test 12: GPU Tiled Kernel (vs CPU match)                    ... PASS
+Test 13: GPU Coarsened Kernel (vs CPU match)                ... PASS
+Test 14: GPU Vectorized Kernel (vs CPU match)               ... PASS
+Test 15: Edge Case: 1x1 CPU                                 ... PASS
+Test 16: Edge Case: 1x1 GPU Naive                           ... PASS
+Test 17: Edge Case: 1x4 GPU Vectorized                      ... PASS
+Test 18: Pattern: All Zeros (CPU Correctness)               ... PASS
+Test 19: Pattern: All Ones (CPU Correctness)                ... PASS
+Test 20: Pattern: Alternating Values (CPU Correctness)      ... PASS
+Test 21: Consistency: Naive vs Tiled                        ... PASS
+Test 22: Consistency: Naive vs Coarsened                    ... PASS
+Test 23: Consistency: Naive vs Vectorized                   ... PASS
+Test 24: Stress Test: Large Matrix CPU                      ... PASS
+Test 25: Stress Test: Large Matrix GPU                      ... PASS
+------------------------
+Tests Passed: 25/25
+ALL TESTS PASSED
+tanej017@csel-cuda-05:/home/tanej017/CSCI5451/project $ 
