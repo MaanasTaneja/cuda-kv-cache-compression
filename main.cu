@@ -32,7 +32,8 @@ int main(int argc, char** argv) {
         {"Realistic Medium LLM workload",131072,   2048},
         {"Realistic Large LLM workload",131072,   4096},
         {"Realistic V. Large LLM workload",131072,  8192}, //this is an estimate to claude's kv cache matrix size.
-        {"Massive Attention", 262144, 128} //long context window
+        {"Massive Attention", 262144, 128}, //long context window
+        {"Ultra Long Narrow", 524288, 64} //extreme sequence length, small head dimension
     };
     const int num_tests = (int)(sizeof(tests) / sizeof(TestCase));
 
